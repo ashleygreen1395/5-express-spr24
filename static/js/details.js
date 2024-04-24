@@ -29,9 +29,8 @@ function renderRecipe(recipe) {
   editForm.description.value = description;
   editForm.ingredients.value = ingredients;
 
-  // Clear existing preparation input fields
   document.querySelector("#preparationList").innerHTML = "";
-  // Add input fields for preparation steps
+
   preparation.forEach((step, index) => {
     const stepInput = document.createElement("input");
     stepInput.type = "text";
@@ -40,7 +39,7 @@ function renderRecipe(recipe) {
     stepInput.value = step.step;
     document.querySelector("#preparationList").appendChild(stepInput);
   });
-  //console.log(editForm)
+
   document.querySelector(".recipe").append(recipeEl);
 }
 
@@ -69,7 +68,7 @@ const updateRecipe = (event) => {
     .then(showDetail)
     .then(location.reload());
 };
-//format date of datepicker
+
 function formatDate(value) {
   const date = new Date(value);
   const year = date.getFullYear();
@@ -81,7 +80,6 @@ function formatDate(value) {
   return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
 }
 
-//display date in the list, convert 2024-04-21T14:04:38.656Z to April 21, 2024 4:38pm
 function setDate(value) {
   const dateString = value;
   const date = new Date(dateString);
@@ -98,7 +96,7 @@ function setDate(value) {
   };
 
   const formattedDate = new Intl.DateTimeFormat("en-US", options).format(date);
-  // console.log(formattedDate)
+
   return formattedDate;
 }
 function setIngredients(value) {
@@ -114,7 +112,7 @@ function setPreparation(value) {
     return `<li>Step ${index + 1}: ${item.step}</li>`;
   });
 }
-//display 'preparation' in the edit form
+
 function prepare() {
   const preparation = [];
   const stepInputs = document.querySelectorAll('input[name^="step"]');
